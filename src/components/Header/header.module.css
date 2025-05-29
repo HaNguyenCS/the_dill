@@ -1,0 +1,101 @@
+.header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: #385D30; /* Soft Leaf Green */
+  padding: 0.5rem 2rem;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #F5F0E1; /* Warm Sand Beige text */
+}
+
+.nav {
+  display: flex ;
+  gap: 1.5rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo {
+  margin-left: 0;
+  display: flex;
+  width: auto;;
+  height: 50px;
+}
+
+.link {
+  text-decoration: none;
+  color: #F5F0E1; /* Dark Forest */
+  font-weight: 400;
+  font-size: 1.2rem;
+  position: relative;
+}
+
+.link::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #F2C94C;
+  transition: width 0.3s;
+}
+
+.link:hover::after {
+  width: 100%;
+}
+.link:hover {
+  color: #F2C94C;
+}
+.link.active {
+  color: #F2C94C;
+}
+.link.active::after {
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .header {
+    flex-direction: row;
+  }
+  .title {
+    font-size: 1.2rem;
+  }
+  .brand {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .nav {
+    gap: 0.7rem;
+  }
+  
+  .link {
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 480px) {
+  .header {
+    padding: 1rem;
+  }
+  
+  .title {
+    font-size: 1rem;
+  }
+  
+  .nav {
+    gap: 0.3rem;
+    font-size: 0.7rem;
+  }
+  
+  .link {
+    font-size: 1rem;
+  }
+}
