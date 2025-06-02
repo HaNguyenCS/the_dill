@@ -7,7 +7,7 @@ import ProductCard from '../../components/ProductCards/productCards.tsx';
 import { productFacade } from '../../components/ProductCards/product.facade.ts';
 import Box from '@mui/material/Box';
 
-const banhmiImage = require('../../asset/_.jpeg');
+const banhmiImage = require('../../asset/Banh-Mi-Thit-Nuong.jpg');
 
 function Home() {
   // const buttonRef = React.useRef<HTMLButtonElement>(null);

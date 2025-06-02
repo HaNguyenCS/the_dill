@@ -1,51 +1,51 @@
 import { Product } from '../../data/product';
 // import { products } from '../../data/product';
 
-const products = [
+const products: Product[] = [
   {
     id: '1',
-    image: require('../../asset/Banh-Mi-Thit-Nuong.jpg'),
+    image: require('../../asset/banhmy.jpg'),
     title: 'Classic Banh Mi',
     description: 'Traditional Vietnamese sandwich with pâté, pickled vegetables, cilantro, and mayo',
     price: 6.99,
-    category: 'banh-mi',
+    category: 'banh-mi' as Product['category'],
     isPopular: true
   },
   {
     id: '2',
-    image: require('../../asset/caphe.webp'),
+    image: require('../../asset/Banh-Mi-Thit-Nuong.jpg'),
     title: 'Grilled Pork Banh Mi',
     description: 'Marinated grilled pork with classic toppings and house special sauce',
     price: 9.99,
-    category: 'banh-mi',
+    category: 'banh-mi' as Product['category'],
     isPopular: true
   },
   {
     id: '3',
     image: require('../../asset/caphe.webp'),
-    title: 'Grilled Pork Banh Mi',
-    description: 'Marinated grilled pork with classic toppings and house special sauce',
-    price: 9.99,
-    category: 'banh-mi',
+    title: 'Coffee',
+    description: '',
+    price: 3.99,
+    category: 'banh-mi' as Product['category'],
     isPopular: true
   },
   {
     id: '4',
-    image: require('../../asset/caphe.webp'),
-    title: 'Grilled Pork Banh Mi',
+    image: require('../../asset/kumquat_tea.png'),
+    title: 'Kumquat Tea',
     description: 'Marinated grilled pork with classic toppings and house special sauce',
     price: 9.99,
-    category: 'banh-mi',
+    category: 'banh-mi' as Product['category'],
     isPopular: true
   },
   {
     id: '5',
     image: require('../../asset/caphe.webp'),
-    title: 'Grilled Pork Banh Mi',
+    title: 'Chicken Banh Mi',
     description: 'Marinated grilled pork with classic toppings and house special sauce',
     price: 9.99,
-    category: 'banh-mi',
-    isPopular: true
+    category: 'banh-mi' as Product['category'],
+    isPopular: false
   },
 ];
 

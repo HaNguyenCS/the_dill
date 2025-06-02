@@ -4,6 +4,8 @@ export interface Product {
   title: string;
   description: string;
   price: number;
-  category: string;
+  category: ProductCategory;
   isPopular?: boolean;
 }
+
+export type ProductCategory = 'banh-mi' | 'drinks' | 'sides' | 'desserts';

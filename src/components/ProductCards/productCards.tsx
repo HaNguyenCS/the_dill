@@ -8,8 +8,6 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardActions from '@mui/material/CardActions';
-import Box from '@mui/material/Box';
-
 
 function ProductCard({
     id,
@@ -49,7 +47,7 @@ function ProductCard({
                     image={getImageSource(image)}
                     alt={title}
                 />
-                <CardContent sx={{ flexGrow: 1 }}>
+                <CardContent sx={{ flexGrow: 2 }}>
                     <Typography 
                     gutterBottom variant="h5" component="div"
                     sx={{ 
@@ -59,12 +57,6 @@ function ProductCard({
                     }}>
                         {title}
                     </Typography>
-                    <Typography variant="body2" sx={{ 
-                        color: '#666666',
-                        fontFamily: 'Georgia, serif'
-                    }}>
-                        {description}
-                    </Typography>
                     <Typography variant="h6" sx={{ 
                         mt: 2, 
                         color: '#E86A33',
@@ -73,16 +65,25 @@ function ProductCard({
                     }}>
                         ${price}
                     </Typography>
+                    <Typography variant="body2" sx={{ 
+                        color: '#666666',
+                        fontFamily: 'Georgia, serif'
+                    }}>
+                        {description}
+                    </Typography>
+                    
                 </CardContent>
             </CardActionArea>
-            <CardActions>
+            <CardActions sx={{ mt: 'auto', px: 2, pb: 2 }}>
                 <Button size="small" color="primary"
+                fullWidth
                 sx={{ 
                     color: '#385D30',
                     '&:hover': {
                         backgroundColor: '#385D30',
                         color: '#F5F0E1'
-                    }
+                    },
+                    fontFamily: 'Georgia, serif',
                 }}>
                     Add to cart
                 </Button>
