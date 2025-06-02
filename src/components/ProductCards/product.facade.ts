@@ -20,6 +20,33 @@ const products = [
     category: 'banh-mi',
     isPopular: true
   },
+  {
+    id: '3',
+    image: require('../../asset/caphe.webp'),
+    title: 'Grilled Pork Banh Mi',
+    description: 'Marinated grilled pork with classic toppings and house special sauce',
+    price: 9.99,
+    category: 'banh-mi',
+    isPopular: true
+  },
+  {
+    id: '4',
+    image: require('../../asset/caphe.webp'),
+    title: 'Grilled Pork Banh Mi',
+    description: 'Marinated grilled pork with classic toppings and house special sauce',
+    price: 9.99,
+    category: 'banh-mi',
+    isPopular: true
+  },
+  {
+    id: '5',
+    image: require('../../asset/caphe.webp'),
+    title: 'Grilled Pork Banh Mi',
+    description: 'Marinated grilled pork with classic toppings and house special sauce',
+    price: 9.99,
+    category: 'banh-mi',
+    isPopular: true
+  },
 ];
 
 export class ProductFacade {

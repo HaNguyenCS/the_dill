@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import ProductCard from '../../components/ProductCards/productCards.tsx';
 import { productFacade } from '../../components/ProductCards/product.facade.ts';
+import Box from '@mui/material/Box';
 
 const banhmiImage = require('../../asset/_.jpeg');
 
@@ -53,7 +54,18 @@ function Home() {
         </section>
         <div className={styles.featuredProducts}>
         <h2>BEST SELLERS</h2>
-        <div className={styles.productList}>
+        <Box sx={{
+            display: 'grid',
+            gridTemplateColumns: {
+                xs: '1fr',
+                sm: 'repeat(2, 1fr)',
+                md: 'repeat(3, 1fr)',
+                lg: 'repeat(4, 1fr)',
+                xl: 'repeat(5, 1fr)'
+            },
+            gap: 3,
+            p: 2
+        }}>
           {popularProducts.map((product) => (
             <ProductCard
               id={product.id}
@@ -65,7 +77,7 @@ function Home() {
               isPopular={product.isPopular}
             />
           ))}
-        </div>
+        </Box>
       </div>
     </div>
   );
