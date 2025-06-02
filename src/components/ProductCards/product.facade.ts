@@ -1,5 +1,4 @@
 import { Product } from '../../data/product';
-// import { products } from '../../data/product';
 
 const products: Product[] = [
   {
@@ -26,7 +25,7 @@ const products: Product[] = [
     title: 'Coffee',
     description: '',
     price: 3.99,
-    category: 'banh-mi' as Product['category'],
+    category: 'drink' as Product['category'],
     isPopular: true
   },
   {
@@ -35,7 +34,7 @@ const products: Product[] = [
     title: 'Kumquat Tea',
     description: 'Marinated grilled pork with classic toppings and house special sauce',
     price: 9.99,
-    category: 'banh-mi' as Product['category'],
+    category: 'drink' as Product['category'],
     isPopular: true
   },
   {
@@ -47,9 +46,22 @@ const products: Product[] = [
     category: 'banh-mi' as Product['category'],
     isPopular: false
   },
+  {
+    id: '6',
+    image: require('../../asset/pate.jpg'),
+    title: 'Patê',
+    description: 'Marinated grilled pork with classic toppings and house special sauce',
+    price: 0.99,
+    category: 'side' as Product['category'],
+    isPopular: false
+  },
 ];
 
 export class ProductFacade {
+
+  getAllProducts(): Product[] {
+    return products;
+  }
 
   getPopularProducts(): Product[] {
     return products.filter(product => product.isPopular);

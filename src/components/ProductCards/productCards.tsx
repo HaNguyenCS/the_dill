@@ -8,22 +8,19 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardActions from '@mui/material/CardActions';
+import Box from '@mui/material/Box';
 
-function ProductCard({
-    id,
-    image,
-    title,
-    description,
-    price,
-    category,
-    isPopular,
-}: Product) {
+interface ProductGridProps {
+    products: Product[];
+}
+
+function ProductCard(product: Product) {
     const getImageSource = (img: string | { default: string }) => {
         return typeof img === 'string' ? img : img.default;
     };
 
     return (
-        <Card key={id} sx={{ 
+        <Card key={product.id} sx={{ 
             width: '100%',
             height: '100%',
             display: 'flex',
@@ -44,8 +41,8 @@ function ProductCard({
                         },
                         objectFit: 'cover'
                     }}
-                    image={getImageSource(image)}
-                    alt={title}
+                    image={getImageSource(product.image)}
+                    alt={product.title}
                 />
                 <CardContent sx={{ flexGrow: 2 }}>
                     <Typography 
@@ -55,7 +52,7 @@ function ProductCard({
                         fontFamily: 'Georgia, serif',
                         fontWeight: 550
                     }}>
-                        {title}
+                        {product.title}
                     </Typography>
                     <Typography variant="h6" sx={{ 
                         mt: 2, 
@@ -63,13 +60,13 @@ function ProductCard({
                         fontFamily: 'Georgia, serif',
                         fontWeight: 600
                     }}>
-                        ${price}
+                        ${product.price}
                     </Typography>
                     <Typography variant="body2" sx={{ 
                         color: '#666666',
                         fontFamily: 'Georgia, serif'
                     }}>
-                        {description}
+                        {product.description}
                     </Typography>
                     
                 </CardContent>
@@ -92,4 +89,26 @@ function ProductCard({
     );
 }
 
-export default ProductCard;
+function ProductGrid( { products }: ProductGridProps) {
+    console.log(products);
+    return (
+        <Box sx={{
+            display: 'grid',
+            gridTemplateColumns: {
+                xs: '1fr',
+                sm: 'repeat(2, 1fr)',
+                md: 'repeat(3, 1fr)',
+                lg: 'repeat(4, 1fr)',
+                xl: 'repeat(5, 1fr)'
+            },
+            gap: 3,
+            p: 2
+        }}>
+            {products.map(product => (
+                <ProductCard key={product.id} {...product} />
+            ))}
+        </Box>
+    );
+}
+
+export default ProductGrid;

@@ -3,7 +3,7 @@ import styles from './home.module.css';
 import { motion } from 'framer-motion';
 // import { useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import ProductCard from '../../components/ProductCards/productCards.tsx';
+import ProductGrid from '../../components/ProductCards/productCards.tsx';
 import { productFacade } from '../../components/ProductCards/product.facade.ts';
 import Box from '@mui/material/Box';
 
@@ -13,7 +13,6 @@ function Home() {
   // const buttonRef = React.useRef<HTMLButtonElement>(null);
   // const isInView = useInView(buttonRef, { once: false });
   const marqueeText = 'Address: 32 Coleville Rd, North York, Ontario  |  Contact: 416-476-7244  |  Experience the authentic taste of Vietnam with our delicious banh mi and refreshing drinks.  ';
-  const popularProducts = productFacade.getPopularProducts();
   
   return (
       <div className={styles.home}>
@@ -54,30 +53,7 @@ function Home() {
         </section>
         <div className={styles.featuredProducts}>
         <h2>BEST SELLERS</h2>
-        <Box sx={{
-            display: 'grid',
-            gridTemplateColumns: {
-                xs: '1fr',
-                sm: 'repeat(2, 1fr)',
-                md: 'repeat(3, 1fr)',
-                lg: 'repeat(4, 1fr)',
-                xl: 'repeat(5, 1fr)'
-            },
-            gap: 3,
-            p: 2
-        }}>
-          {popularProducts.map((product) => (
-            <ProductCard
-              id={product.id}
-              image={product.image}
-              title={product.title}
-              description={product.description}
-              price={product.price}
-              category={product.category}
-              isPopular={product.isPopular}
-            />
-          ))}
-        </Box>
+        <ProductGrid products={productFacade.getPopularProducts()} />
       </div>
     </div>
   );

@@ -5,34 +5,82 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import React from 'react';
 
+import { productFacade } from '../../components/ProductCards/product.facade.ts';
+import ProductGrid from '../../components/ProductCards/productCards.tsx';
+import { ProductCategory } from '../../data/product';
+
+
 function Menu() {
-    const [value, setValue] = React.useState('1');
+    const [value, setValue] = React.useState('all');
 
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
-    setValue(newValue);
-  };
+    const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+        setValue(newValue);
+    };
 
-  return (
-    <Box sx={{ width: '100%', typography: 'body1' }}>
-      <TabContext value={value}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <TabList onChange={handleChange} aria-label="lab API tabs example">
-            <Tab label="All" value="1" />
-            <Tab label="Banh Mi" value="2" />
-            <Tab label="Drinks" value="3" />
-            <Tab label="Sides" value="4" />
-            <Tab label="Desserts" value="5" />
-            <Tab label="Combo" value="5" />
-          </TabList>
+    const tabs: { label: string; value: string; category?: ProductCategory }[] = [
+        { label: 'All', value: 'all' },
+        { label: 'Banh Mi', value: 'banh-mi', category: 'banh-mi' },
+        { label: 'Drinks', value: 'drinks', category: 'drink' },
+        { label: 'Sides', value: 'sides', category: 'side' },
+        { label: 'Desserts', value: 'desserts', category: 'dessert' },
+        { label: 'Combo', value: 'combo' },
+    ];
+
+    return (
+        <Box sx={{ 
+            width: '100%', 
+            typography: 'body1',
+            backgroundColor: '#FFF8E7' // Light beige background
+        }}>
+            <TabContext value={value}>
+                <Box sx={{ 
+                    borderBottom: 1, 
+                    borderColor: '#385D30', // Dark green border
+                    backgroundColor: '#A3C586' // Light green background
+                }}>
+                    <TabList 
+                        scrollButtons="auto" variant="scrollable" aria-label="menu tabs"
+                        onChange={handleChange}
+                        TabIndicatorProps={{
+                            style: {
+                                backgroundColor: "#385D30"
+                            }
+                        }}
+                        sx={{
+                            '& .MuiTab-root': {
+                                color: '#385D30',
+                                fontFamily: 'Georgia, serif',
+                                fontSize: {
+                                    xs: '0.8rem',
+                                    sm: '1rem'
+                                },
+                                fontWeight: 600,
+                                '&.Mui-selected': {
+                                    color: '#385D30',
+                                    fontWeight: 700
+                                }
+                            }
+                        }}
+                    >
+                        {tabs.map(tab => (
+                            <Tab key={tab.value} label={tab.label} value={tab.value} />
+                        ))}
+                    </TabList>
+                </Box>
+                {tabs.map(tab => (
+                    <TabPanel key={tab.value} value={tab.value} sx={{ padding: 3 }}>
+                        <ProductGrid 
+                            products={
+                                tab.value === 'all' 
+                                    ? productFacade.getAllProducts()
+                                    : productFacade.getProductsByCategory(tab.category!)
+                            } 
+                        />
+                    </TabPanel>
+                ))}
+            </TabContext>
         </Box>
-        <TabPanel value="1">All</TabPanel>
-        <TabPanel value="2">Banh Mi</TabPanel>
-        <TabPanel value="3">Drinks</TabPanel>
-        <TabPanel value="4">Sides</TabPanel>
-        <TabPanel value="5">Desserts</TabPanel>
-        <TabPanel value="5">Combo</TabPanel>
-      </TabContext>
-    </Box>
-  );
+    );
 }
+
 export default Menu;

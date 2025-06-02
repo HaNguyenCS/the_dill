@@ -8,4 +8,4 @@ export interface Product {
   isPopular?: boolean;
 }
 
-export type ProductCategory = 'banh-mi' | 'drinks' | 'sides' | 'desserts';
+export type ProductCategory = 'banh-mi' | 'drink' | 'side' | 'dessert';
