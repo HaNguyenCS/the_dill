@@ -3,23 +3,81 @@
     min-height: 100vh;
 }
 
-.hero {
+.welcome {
     background-color: #A3C586;
     color: white;
-    padding: 4rem 2rem;
     text-align: center;
 }
 
-.hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: #F5F0E1;
+.welcome h1 {
+    position: absolute;
+    float: left;
+    top: 15%;
+    left: 37%;
+    font-weight: bold;
+    font-size: 5rem;
+    font-family: 'Georgia', serif;
+    color: #F2C94C;
 }
 
-/* .featuredProducts {
+.logo {
+    width:100%;
+    height: auto;
+}
+
+.orderButton {
+  position: absolute;
+  top: 70%;      
+  right: 50%;         
+  transform: translateX(50%); 
+  background-color: #385D30;
+  color: white;
+  font-weight: bold;
+  font-size: 2rem;
+  font-family: 'Georgia', serif;
+  padding: 1.5rem 4rem;
+  border: none;
+  border-radius: 30px;
+  transition-duration: 0.6s;
+  cursor: pointer;
+
+}
+
+.orderButton:hover {
+  background-color: #A3C586;
+  color: white;
+}
+
+.marqueeContent {
+    display: flex;
+    white-space: nowrap;
+    min-width: 200%;
+    height: 100%;
+    align-items: center;
+}
+
+.marqueeText {
+    color: #385D30;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: 'Georgia', serif;
+    padding: 0 20px;
+    flex-shrink: 0;
+    min-width: 100%;
+}
+.marqueeContainer {
+    position: relative;
+    overflow: hidden;
+    background-color: #A3C586;
+    width: 100%;
+    height: 60px;
+    margin-top: auto;
+}
+.featuredProducts {
     padding: 4rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
+    font-family: 'Georgia', serif;
 }
 
 .featuredProducts h2 {
@@ -59,4 +117,80 @@
     font-weight: bold;
     display: block;
     margin-top: 1rem;
-} */
+}
+
+@media (max-width: 1024px) {
+    .welcome h1 {
+        top: 15%;
+        left: 40%;
+        font-size: 3.6rem;
+        }
+    
+        .orderButton {
+            top: 50%;
+            right: 50%;
+            padding: 1.5rem 4rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+}
+@media (max-width: 932px) {
+  .welcome h1 {
+    top: 15%;
+    left: 40%;
+    font-size: 2.9rem;
+    }
+
+    .orderButton {
+        top: 50%;
+        right: 50%;
+        padding: 1.2rem 3.7rem;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+}
+
+@media (max-width: 896px) {
+  .welcome h1 {
+    top: 15%;
+    left: 40%;
+    font-size: 2.5rem;
+    }
+
+    .orderButton {
+        top: 60%;
+        right: 50%;
+        padding: 1rem 3.2rem;
+        font-size: 1.3rem;
+        cursor: pointer;
+    }
+}
+
+@media (max-width: 600px) {
+    .welcome h1 {
+        top: 10%;
+        left: 50%;
+        font-size: 1.5rem;
+    }
+    .orderButton {
+        top: 30%;
+        right: 50%;
+        padding: 0.9rem 1.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .welcome h1 {
+        top: 10%;
+        left: 50%;
+        font-size: 1.3rem;
+    }
+    .orderButton {
+        top: 25%;
+        right: 50%;
+        padding: 0.5rem 1.5rem;
+        font-size: 0.6rem;
+        cursor: pointer;
+    }
+}

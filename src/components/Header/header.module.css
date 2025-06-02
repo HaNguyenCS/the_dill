@@ -5,8 +5,10 @@
   align-items: center;
   flex-wrap: wrap;
   justify-content: space-between;
-  background-color: #385D30; /* Soft Leaf Green */
+  background-color: #385D30;
+  font-family: 'Georgia', serif;
   padding: 0.5rem 2rem;
+  z-index: 20; 
 }
 
 .title {
@@ -74,28 +76,35 @@
     align-items: flex-start;
   }
   .nav {
-    gap: 0.7rem;
+    gap: 0.9rem;
   }
   
   .link {
     font-size: 0.9rem;
   }
 }
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .header {
-    padding: 1rem;
+    padding: 0.5rem;
   }
   
   .title {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   
   .nav {
-    gap: 0.3rem;
-    font-size: 0.7rem;
+    gap: 0.5rem;
+    font-size: 0.6rem;
   }
-  
+
+  .logo {
+    margin-left: 0;
+    display: flex;
+    width: auto;;
+    height: 30px;
+  }
+
   .link {
-    font-size: 1rem;
+    font-size: 0.7rem;
   }
 }
