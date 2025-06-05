@@ -50,14 +50,15 @@ export default function AddToCartDialog({ open, onClose, product }: AddToCartDia
             PaperProps={{
                 sx: {
                     backgroundColor: '#F5F0E1',
-                    fontFamily: 'Georgia, serif'
                 }
             }}
         >
             <DialogTitle sx={{ 
                 color: '#385D30',
                 borderBottom: '1px solid #385D30',
-                mb: 2
+                mb: 2,
+                fontWeight: 600,
+                fontFamily: 'Georgia, serif',
             }}>
                 {product.title}
             </DialogTitle>
@@ -84,7 +85,7 @@ export default function AddToCartDialog({ open, onClose, product }: AddToCartDia
                         />
                     </Box>
                     <Box sx={{ flex: 1 }}>
-                        <Typography sx={{ color: '#666666', mb: 2 }}>
+                        <Typography sx={{ color: '#666666', mb: 2, fontFamily: 'Georgia, serif' }}>
                             {product.description}
                         </Typography>
                         <Typography sx={{ 
@@ -99,7 +100,7 @@ export default function AddToCartDialog({ open, onClose, product }: AddToCartDia
 
                 {product.category === 'banh-mi' && sideProducts.length > 0 && (
                     <FormControl fullWidth sx={{ mb: 3 }}>
-                        <FormLabel sx={{ color: '#385D30', mb: 1 }}>Options</FormLabel>
+                        <FormLabel sx={{ color: '#385D30', mb: 1, fontFamily: 'Georgia, serif' }}>Options</FormLabel>
                         <Box sx={{ display: 'flex', flexDirection: 'column', color: '#385D30' }}>
                             {sideProducts.map((side) => (
                                 <FormControlLabel
@@ -114,13 +115,7 @@ export default function AddToCartDialog({ open, onClose, product }: AddToCartDia
                                                         : [...prev, side.title]
                                                 );
                                             }}
-                                            sx={{
-                                                '&.Mui-checked': {
-                                                    color: '#385D30'
-                                                },
-                                                '&.MuiCheckbox-root': {
-                                                    color: '#385D30'
-                                                },
+                                            sx={{ 
                                                 color: '#385D30'
                                             }}
                                         />
@@ -130,7 +125,8 @@ export default function AddToCartDialog({ open, onClose, product }: AddToCartDia
                                             display: 'flex', 
                                             justifyContent: 'space-between', 
                                             width: '100%',
-                                            color: '#666666'
+                                            color: '#666666',
+                                            fontFamily: 'Georgia, serif'
                                         }}>
                                             <span>{side.title} </span>
                                             <span> (+${side.price.toFixed(2)})</span>
@@ -148,7 +144,7 @@ export default function AddToCartDialog({ open, onClose, product }: AddToCartDia
                     gap: 2,
                     mb: 3
                 }}>
-                    <Typography sx={{ color: '#385D30' }}>Quantity:</Typography>
+                    <Typography sx={{ color: '#385D30', fontFamily: 'Georgia, serif' }}>Quantity:</Typography>
                     <Box sx={{ 
                         display: 'flex', 
                         alignItems: 'center',
@@ -194,16 +190,19 @@ export default function AddToCartDialog({ open, onClose, product }: AddToCartDia
                     placeholder="Add any special requests here..."
                     sx={{
                         '& label.Mui-focused': {
-                            color: '#385D30'
+                            color: '#385D30',
                         },
                         '& .MuiInput-underline:after': {
-                            borderBottomColor: '#385D30'
+                            borderBottomColor: '#385D30',
+                            fontFamily: 'Georgia, serif'
                         },
                         '& .MuiOutlinedInput-root': {
                             '&.Mui-focused fieldset': {
-                                borderColor: '#385D30'
+                                borderColor: '#385D30',
+                                fontFamily: 'Georgia, serif'
                             }
-                        }
+                        },
+                        fontFamily: 'Georgia, serif'
                     }}
                 />
             </DialogContent>
