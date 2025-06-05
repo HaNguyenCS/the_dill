@@ -53,6 +53,15 @@ const products: Product[] = [
     description: 'Marinated grilled pork with classic toppings and house special sauce',
     price: 0.99,
     category: 'side' as Product['category'],
+    isPopular: true
+  },
+  {
+    id: '7',
+    image: require('../../asset/pate.jpg'),
+    title: 'Handmade Mayo',
+    description: 'Marinated grilled pork with classic toppings and house special sauce',
+    price: 0.79,
+    category: 'side' as Product['category'],
     isPopular: false
   },
 ];

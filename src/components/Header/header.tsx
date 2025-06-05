@@ -8,7 +8,10 @@ const navItems = [
   { label: 'Menu', to: '/menu' },
   { label: 'About', to: '/about' },
   { label: 'Contact', to: '/contact' },
-  { label: <AddShoppingCartOutlinedIcon />, to: '/cart' }
+  { 
+    label: <AddShoppingCartOutlinedIcon className={styles.cartIcon} />, 
+    to: '/cart' 
+  }
 ];
 
 // type HeaderProps = {};
@@ -31,7 +34,7 @@ function Header() {
                     <Link 
                         key={item.to} 
                         to={item.to} 
-                        className={styles.link}
+                        className={`${styles.link} ${item.to === '/cart' ? styles.cartLink : ''}`}
                         aria-label={item.to === '/cart' ? 'Shopping Cart' : item.label.toString()}
                     >
                         {item.label}

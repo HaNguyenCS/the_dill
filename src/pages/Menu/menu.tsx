@@ -8,6 +8,7 @@ import React from 'react';
 import { productFacade } from '../../components/ProductCards/product.facade.ts';
 import ProductGrid from '../../components/ProductCards/productCards.tsx';
 import { ProductCategory } from '../../data/product';
+import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
 
 
 function Menu() {
@@ -23,7 +24,7 @@ function Menu() {
         { label: 'Drinks', value: 'drinks', category: 'drink' },
         { label: 'Sides', value: 'sides', category: 'side' },
         { label: 'Desserts', value: 'desserts', category: 'dessert' },
-        { label: 'Combo', value: 'combo' },
+        { label: 'Combo', value: 'combo', category: 'combo' },
     ];
 
     return (
@@ -69,6 +70,14 @@ function Menu() {
                 </Box>
                 {tabs.map(tab => (
                     <TabPanel key={tab.value} value={tab.value} sx={{ padding: 3 }}>
+                        <div style={{color: '#666666', fontFamily: 'Georgia, serif', fontSize: '1rem', marginBottom: '1rem'}}>
+                            <FavoriteBorderRoundedIcon 
+                            sx={{ 
+                                fontSize: '1rem',
+                                color: '#A3C586' 
+                            }}
+                        /> = Best sellers
+                        </div>
                         <ProductGrid 
                             products={
                                 tab.value === 'all' 

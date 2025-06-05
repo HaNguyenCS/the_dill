@@ -2,13 +2,13 @@
   position: sticky;
   top: 0;
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+  align-items: center; /* Keep items centered vertically */
   justify-content: space-between;
   background-color: #385D30;
   font-family: 'Georgia', serif;
   padding: 0.5rem 2rem;
-  z-index: 20; 
+  z-index: 20;
+  min-height: 70px; /* Add fixed height for consistency */
 }
 
 .title {
@@ -18,14 +18,17 @@
 }
 
 .nav {
-  display: flex ;
+  display: flex;
+  align-items: center; /* Center nav items vertically */
   gap: 1.5rem;
+  height: 100%; /* Match header height */
 }
 
 .brand {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  height: 100%; /* Match header height */
 }
 
 .logo {
@@ -36,6 +39,9 @@
 }
 
 .link {
+  display: flex;
+  align-items: center;
+  height: 100%; /* Make links full height */
   text-decoration: none;
   color: #F5F0E1; /* Dark Forest */
   font-weight: 400;
@@ -64,9 +70,28 @@
 .link.active::after {
   width: 100%;
 }
+.cartLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Make cart link full height */
+  padding: 0.5rem;
+  transition: transform 0.2s ease;
+}
+
+.cartLink:hover {
+    transform: scale(1.1);
+}
+
+.cartIcon {
+    font-size: 1.5rem;
+}
+
+/* Responsive styles */
 @media (max-width: 768px) {
   .header {
     flex-direction: row;
+    min-height: 60px;
   }
   .title {
     font-size: 1.2rem;
@@ -82,10 +107,15 @@
   .link {
     font-size: 0.9rem;
   }
+  .cartIcon {
+        font-size: 1.2rem;
+    }
 }
+
 @media (max-width: 600px) {
   .header {
     padding: 0.5rem;
+    min-height: 50px;
   }
   
   .title {
@@ -107,4 +137,14 @@
   .link {
     font-size: 0.7rem;
   }
+}
+
+@media (max-width: 480px) {
+    .cartLink {
+        padding: 0.3rem;
+    }
+    
+    .cartIcon {
+        font-size: 1rem;
+    }
 }
