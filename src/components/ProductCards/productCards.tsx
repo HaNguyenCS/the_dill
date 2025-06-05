@@ -57,6 +57,14 @@ function ProductCard(product: Product) {
                             fontWeight: 550
                         }}>
                             {product.title}
+                            {product.isPopular && (
+                            <FavoriteBorderRoundedIcon 
+                                sx={{ 
+                                    fontSize: '1rem',
+                                    color: '#A3C586' 
+                                }} 
+                            />
+                        )}
                         </Typography>
                         <Typography variant="h6" sx={{ 
                             mt: 2, 
@@ -88,14 +96,6 @@ function ProductCard(product: Product) {
                             fontFamily: 'Georgia, serif',
                         }}>
                         Add to cart 
-                        {product.isPopular && (
-                            <FavoriteBorderRoundedIcon 
-                                sx={{ 
-                                    fontSize: '1rem',
-                                    color: '#A3C586' 
-                                }} 
-                            />
-                        )}
                     </Button>
                 </CardActions>
             </Card>

@@ -2,14 +2,16 @@ import * as React from 'react';
 import { useState } from 'react';
 import {
     Button, TextField, Dialog, DialogActions, DialogContent,
-    DialogTitle, FormControl, FormLabel, RadioGroup,
-    FormControlLabel, Radio, Box, Typography, Checkbox,
+    DialogTitle, FormControl, FormLabel,
+    FormControlLabel, Box, Typography, Checkbox,
     IconButton
 } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import { Product } from '../../data/product';
 import { productFacade } from '../ProductCards/product.facade.ts';
+import { v4 as uuidv4 } from 'uuid';
+import { useCart } from '../../context/cartContext.tsx';
 
 interface AddToCartDialogProps {
     open: boolean;
@@ -21,7 +23,8 @@ export default function AddToCartDialog({ open, onClose, product }: AddToCartDia
     const [quantity, setQuantity] = useState(1);
     const [selectedSides, setSelectedSides] = useState<string[]>([]);
     const [notes, setNotes] = useState('');
-    
+    const { addToCart } = useCart();
+
     const sideProducts = productFacade.getProductsByCategory('side');
 
     const calculateTotal = () => {
@@ -33,6 +36,18 @@ export default function AddToCartDialog({ open, onClose, product }: AddToCartDia
         return (basePrice + sidesTotal).toFixed(2);
     };
 
+    const handleAddToCart = () => {
+        addToCart({
+            id: uuidv4(),
+            product,
+            quantity,
+            selectedSides,
+            notes,
+            totalPrice: Number(calculateTotal())
+        });
+        handleClose();
+    };
+
     const handleQuantityChange = (operation: 'increment' | 'decrement') => {
         if (operation === 'increment') {
             setQuantity(prev => prev + 1);
@@ -41,10 +56,21 @@ export default function AddToCartDialog({ open, onClose, product }: AddToCartDia
         }
     };
 
+    const resetForm = () => {
+        setQuantity(1);
+        setSelectedSides([]);
+        setNotes('');
+    };
+
+    const handleClose = () => {
+        resetForm();
+        onClose();
+    };
+
     return (
         <Dialog
             open={open}
-            onClose={onClose}
+            onClose={handleClose}
             maxWidth="sm"
             fullWidth
             PaperProps={{
@@ -207,11 +233,11 @@ export default function AddToCartDialog({ open, onClose, product }: AddToCartDia
                 />
             </DialogContent>
             <DialogActions sx={{ p: 3 }}>
-                <Button onClick={onClose} sx={{ color: '#666666' }}>
+                <Button onClick={handleClose} sx={{ color: '#666666' }}>
                     Cancel
                 </Button>
                 <Button 
-                    onClick={onClose}
+                    onClick={handleAddToCart}
                     variant="contained"
                     disabled={quantity < 1}
                     sx={{ 

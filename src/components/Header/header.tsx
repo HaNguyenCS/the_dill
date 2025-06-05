@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './header.module.css';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
+import { useCart } from '../../context/cartContext.tsx';
+import CartDialog from '../AddToCartDialog/cart.tsx';
 
 const navItems = [
   { label: 'Home', to: '/' },
@@ -14,10 +16,11 @@ const navItems = [
   }
 ];
 
-// type HeaderProps = {};
 const titleIcon = require('../../asset/title2.webp');
 
 function Header() {
+    const [cartOpen, setCartOpen] = useState(false);
+
     return (
         <header className={styles.header}>
            
@@ -33,7 +36,8 @@ function Header() {
                 {navItems.map(item => (
                     <Link 
                         key={item.to} 
-                        to={item.to} 
+                        to={item.to === '/cart' ? '#' : item.to}
+                        onClick={item.to === '/cart' ? () => setCartOpen(true) : undefined}
                         className={`${styles.link} ${item.to === '/cart' ? styles.cartLink : ''}`}
                         aria-label={item.to === '/cart' ? 'Shopping Cart' : item.label.toString()}
                     >
@@ -41,8 +45,9 @@ function Header() {
                     </Link>
                 ))}
             </nav>
+            <CartDialog open={cartOpen} onClose={() => setCartOpen(false)} />
         </header>
-    )
+    );
 };
 
 export default Header;
