@@ -126,7 +126,9 @@ export default function AddToCartDialog({ open, onClose, product }: AddToCartDia
 
                 {product.category === 'banh-mi' && sideProducts.length > 0 && (
                     <FormControl fullWidth sx={{ mb: 3 }}>
-                        <FormLabel sx={{ color: '#385D30', mb: 1, fontFamily: 'Georgia, serif' }}>Options</FormLabel>
+                        <FormLabel sx={{ color: '#385D30', mb: 1, fontFamily: 'Georgia, serif' }}>
+                            Extra (Optional)
+                        </FormLabel>
                         <Box sx={{ display: 'flex', flexDirection: 'column', color: '#385D30' }}>
                             {sideProducts.map((side) => (
                                 <FormControlLabel

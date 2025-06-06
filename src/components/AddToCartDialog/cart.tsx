@@ -45,7 +45,7 @@ export default function CartDialog({ open, onClose }: CartDialogProps) {
                                 </Typography>
                                 {item.selectedSides && (
                                     <Typography sx={{ color: '#666666', fontSize: '0.9rem' }}>
-                                        Sides: {item.selectedSides.join(', ')}
+                                        Extra: {item.selectedSides.join(', ')}
                                     </Typography>
                                 )}
                                 {item.notes && (
