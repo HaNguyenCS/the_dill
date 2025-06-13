@@ -1,0 +1,28 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-thedill-dev-19b02-authRole",
+      "UnauthRoleArn": "arn:aws:iam::663428878288:role/amplify-thedill-dev-19b02-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::663428878288:role/amplify-thedill-dev-19b02-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-thedill-dev-19b02-deployment",
+      "UnauthRoleName": "amplify-thedill-dev-19b02-unauthRole",
+      "StackName": "amplify-thedill-dev-19b02",
+      "StackId": "arn:aws:cloudformation:us-east-2:663428878288:stack/amplify-thedill-dev-19b02/c9b4c680-47f6-11f0-b185-06de687975e5",
+      "AmplifyAppId": "d2u3drbesgrpqx",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-thedill-dev-19b02-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+    },
+    "categories": {
+      "auth": {
+        "thedilleeca240b": {}
+      },
+      "function": {
+        "thedilleeca240bPostConfirmation": {
+          "GROUP": "Admins",
+          "deploymentBucketName": "amplify-thedill-dev-19b02-deployment",
+          "s3Key": "amplify-builds/thedilleeca240bPostConfirmation-4b6643362f6838784c77-build.zip"
+        }
+      }
+    }
+  }
+}

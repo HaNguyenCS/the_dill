@@ -25,11 +25,11 @@ function Header() {
         <header className={styles.header}>
            
             <div className={styles.brand}>
-                <img
+                {/* <img
                 src={titleIcon}
                 alt="Dill Banh Mi Logo"
                 className={styles.logo}
-                />
+                /> */}
                 <h1 className={styles.title}>The Dill Banh Mi</h1>
             </div>
             <nav className={styles.nav}>
