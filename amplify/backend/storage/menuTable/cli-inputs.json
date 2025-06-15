@@ -1,0 +1,10 @@
+{
+  "resourceName": "menuTable",
+  "tableName": "menuTable",
+  "partitionKey": {
+    "fieldName": "id",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

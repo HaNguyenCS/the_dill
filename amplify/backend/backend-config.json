@@ -1,4 +1,20 @@
 {
+  "api": {
+    "dillMenu": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "menuHandler"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
   "auth": {
     "thedilleeca240b": {
       "customAuth": false,
@@ -38,6 +54,25 @@
     }
   },
   "function": {
+    "menuHandler": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributeEnvMap": {
+            "Arn": "TABLE_ARN",
+            "Name": "TABLE_NAME"
+          },
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "storage",
+          "resourceName": "menuTable"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "thedilleeca240bPostConfirmation": {
       "build": true,
       "providerPlugin": "awscloudformation",
@@ -68,6 +103,12 @@
           "resourceName": "thedilleeca240bPostConfirmation"
         }
       ]
+    }
+  },
+  "storage": {
+    "menuTable": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
     }
   }
 }
