@@ -80,6 +80,22 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_menuHandler_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "menuHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_menuHandler_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "menuHandler"
+        }
+      ]
+    },
     "AMPLIFY_function_thedilleeca240bPostConfirmation_GROUP": {
       "usedBy": [
         {

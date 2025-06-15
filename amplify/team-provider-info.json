@@ -10,7 +10,8 @@
       "StackName": "amplify-thedill-dev-19b02",
       "StackId": "arn:aws:cloudformation:us-east-2:663428878288:stack/amplify-thedill-dev-19b02/c9b4c680-47f6-11f0-b185-06de687975e5",
       "AmplifyAppId": "d2u3drbesgrpqx",
-      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-thedill-dev-19b02-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-thedill-dev-19b02-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-thedill-dev-19b02-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {
@@ -22,7 +23,16 @@
           "deploymentBucketName": "amplify-thedill-dev-19b02-deployment",
           "s3Key": "amplify-builds/thedilleeca240bPostConfirmation-4b6643362f6838784c77-build.zip"
         },
-        "menuHandler": {}
+        "menuHandler": {
+          "deploymentBucketName": "amplify-thedill-dev-19b02-deployment",
+          "s3Key": "amplify-builds/menuHandler-7145682b67334e44766a-build.zip"
+        }
+      },
+      "storage": {
+        "menuTable": {}
+      },
+      "api": {
+        "dillMenu": {}
       }
     }
   }
