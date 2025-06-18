@@ -3,17 +3,26 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { productFacade } from '../../components/ProductCards/product.facade.ts';
 import ProductGrid from '../../components/ProductCards/productCards.tsx';
 import { ProductCategory } from '../../data/product';
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
-
+import CircularProgress from '@mui/material/CircularProgress';
 
 function Menu() {
+    const [isLoading, setIsLoading] = useState(true);
     const [value, setValue] = React.useState('all');
 
+    useEffect(() => {
+        async function init() {
+            await productFacade.initialize();
+            setIsLoading(false);
+        }
+        init();
+    }, []);
+  
     const handleChange = (event: React.SyntheticEvent, newValue: string) => {
         setValue(newValue);
     };
@@ -26,6 +35,10 @@ function Menu() {
         { label: 'Desserts', value: 'desserts', category: 'dessert' },
         { label: 'Combo', value: 'combo', category: 'combo' },
     ];
+
+    if (isLoading) {
+        return <CircularProgress color="success" />;
+    }
 
     return (
         <Box sx={{ 

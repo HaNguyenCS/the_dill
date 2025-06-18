@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "storage": {
+      "menuTable": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

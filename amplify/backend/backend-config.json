@@ -1,6 +1,6 @@
 {
   "api": {
-    "dillMenu": {
+    "menuAPI": {
       "dependsOn": [
         {
           "attributes": [
@@ -8,7 +8,7 @@
             "Arn"
           ],
           "category": "function",
-          "resourceName": "menuHandler"
+          "resourceName": "menuHandlerPy"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -54,17 +54,14 @@
     }
   },
   "function": {
-    "menuHandler": {
+    "menuHandlerPy": {
       "build": true,
       "dependsOn": [
         {
-          "attributeEnvMap": {
-            "Arn": "TABLE_ARN",
-            "Name": "TABLE_NAME"
-          },
           "attributes": [
             "Name",
-            "Arn"
+            "Arn",
+            "StreamArn"
           ],
           "category": "storage",
           "resourceName": "menuTable"
@@ -80,19 +77,19 @@
     }
   },
   "parameters": {
-    "AMPLIFY_function_menuHandler_deploymentBucketName": {
+    "AMPLIFY_function_menuHandlerPy_deploymentBucketName": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "menuHandler"
+          "resourceName": "menuHandlerPy"
         }
       ]
     },
-    "AMPLIFY_function_menuHandler_s3Key": {
+    "AMPLIFY_function_menuHandlerPy_s3Key": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "menuHandler"
+          "resourceName": "menuHandlerPy"
         }
       ]
     },

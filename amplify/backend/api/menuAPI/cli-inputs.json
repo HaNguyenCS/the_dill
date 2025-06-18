@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "paths": {
+    "/menu": {
+      "name": "/menu",
+      "lambdaFunction": "menuHandlerPy",
+      "permissions": {
+        "setting": "protected",
+        "auth": [
+          "create"
+        ],
+        "guest": [
+          "read"
+        ]
+      }
+    },
+    "/menu/{id}": {
+      "name": "/menu/{id}",
+      "lambdaFunction": "menuHandlerPy",
+      "permissions": {
+        "setting": "private",
+        "auth": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ]
+      }
+    }
+  }
+}

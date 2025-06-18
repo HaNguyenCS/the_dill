@@ -23,16 +23,16 @@
           "deploymentBucketName": "amplify-thedill-dev-19b02-deployment",
           "s3Key": "amplify-builds/thedilleeca240bPostConfirmation-4b6643362f6838784c77-build.zip"
         },
-        "menuHandler": {
+        "menuHandlerPy": {
           "deploymentBucketName": "amplify-thedill-dev-19b02-deployment",
-          "s3Key": "amplify-builds/menuHandler-7145682b67334e44766a-build.zip"
+          "s3Key": "amplify-builds/menuHandlerPy-556b4638694b374f3451-build.zip"
         }
       },
       "storage": {
         "menuTable": {}
       },
       "api": {
-        "dillMenu": {}
+        "menuAPI": {}
       }
     }
   }
