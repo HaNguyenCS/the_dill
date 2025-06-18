@@ -4,9 +4,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Amplify } from 'aws-amplify';
-import amplifyconfig from './amplifyconfiguration.json';
+import awsmobile from './aws-exports'; 
 
-Amplify.configure(amplifyconfig);
+Amplify.configure(awsmobile);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
