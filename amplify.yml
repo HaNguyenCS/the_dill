@@ -3,10 +3,11 @@ backend:
   phases:
     build:
       commands:
+        - npm install -g @aws-amplify/cli
         - amplifyPush --simple
+        - ls src
+        - amplify --version
 frontend:
-  runtime-versions:
-    nodejs: 22
   phases:
     preBuild:
       commands:
