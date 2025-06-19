@@ -1,7 +1,8 @@
 version: 1
-runtime-versions:
-  nodejs: 22
+
 frontend:
+  runtime-versions:
+    nodejs: 22
   phases:
     preBuild:
       commands:
@@ -9,6 +10,7 @@ frontend:
         - nvm use 22
         - node --version
         - npm ci --cache .npm --prefer-offline --legacy-peer-deps
+        - amplifyPush --simple
     build:
       commands:
         - npm run build
