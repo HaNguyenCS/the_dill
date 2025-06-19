@@ -1,5 +1,10 @@
 version: 1
-
+backend:
+  phases:
+    build:
+      commands:
+        - echo Installing backend...
+        - amplifyPush --simple
 frontend:
   phases:
     preBuild:
