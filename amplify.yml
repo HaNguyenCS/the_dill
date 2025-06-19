@@ -1,16 +1,5 @@
 version: 1
-backend:
-  phases:
-    preBuild:
-      commands:
-        - npm install -g @aws-amplify/cli
-        - amplify pull --appId d2u3drbesgrpqx --envName dev --yes
-    build:
-      commands:
-        - npm install -g @aws-amplify/cli
-        - amplifyPush --simple
-        - ls src
-        - amplify --version
+
 frontend:
   phases:
     preBuild:
