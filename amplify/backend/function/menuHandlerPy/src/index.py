@@ -4,7 +4,7 @@ from boto3.dynamodb.conditions import Key
 
 # Initialize DynamoDB
 dynamodb = boto3.resource('dynamodb')
-table = dynamodb.Table('menuTable-dev')  # Replace with your actual table name
+table = dynamodb.Table('menuTable')  # Replace with your actual table name
 
 def handler(event, context):
     print('received event:', event)
