@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@aws-amplify/api": "^6.3.13",
     "@aws-amplify/ui-react": "^6.11.2",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",

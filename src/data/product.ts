@@ -8,4 +8,10 @@ export interface Product {
   isPopular?: boolean;
 }
 
-export type ProductCategory = 'banh-mi' | 'drink' | 'side' | 'dessert' | 'combo';
+export enum ProductCategory {
+  BANH_MI = 'banh-mi',
+  DRINK = 'drink',
+  SIDE = 'side',
+  DESSERT = 'dessert',
+  COMBO = 'combo'
+}

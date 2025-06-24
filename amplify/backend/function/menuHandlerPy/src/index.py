@@ -1,10 +1,18 @@
-import json
 import boto3
-from boto3.dynamodb.conditions import Key
+import os
+import json
+from decimal import Decimal
 
-# Initialize DynamoDB
+table_name = os.environ['STORAGE_MENUTABLE_NAME']
+
 dynamodb = boto3.resource('dynamodb')
-table = dynamodb.Table('menuTable')  # Replace with your actual table name
+table    = dynamodb.Table(table_name)
+
+class DecimalEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, Decimal):
+            return float(obj)
+        return super(DecimalEncoder, self).default(obj)
 
 def handler(event, context):
     print('received event:', event)
@@ -18,64 +26,59 @@ def handler(event, context):
     }
     
     try:
-        # GET /menu - List all items
         if method == 'GET' and path == '/menu':
             response = table.scan()
+            print('response GET ALL', response)
             return {
                 'statusCode': 200,
                 'headers': headers,
-                'body': json.dumps(response.get('Items', []))
+                'body': json.dumps(response['Items'], cls=DecimalEncoder)
             }
             
-        # GET /menu/{id} - Get single item
-        elif method == 'GET' and path.startswith('/menu/'):
-            item_id = path.split('/')[-1]
-            response = table.get_item(Key={'id': item_id})
-            return {
-                'statusCode': 200,
-                'headers': headers,
-                'body': json.dumps(response.get('Item', {}))
-            }
+        # elif method == 'GET' and path.startswith('/menu/'):
+        #     item_id = path.split('/')[-1]
+        #     response = table.get_item(Key={'id': item_id})
+        #     return {
+        #         'statusCode': 200,
+        #         'headers': headers,
+        #         'body': json.dumps(response.get('Item', {}))
+        #     }
             
-        # POST /menu - Create new item
-        elif method == 'POST' and path == '/menu':
-            body = json.loads(event['body'])
-            table.put_item(Item=body)
-            return {
-                'statusCode': 201,
-                'headers': headers,
-                'body': json.dumps(body)
-            }
+        # elif method == 'POST' and path == '/menu':
+        #     body = json.loads(event['body'])
+        #     table.put_item(Item=body)
+        #     return {
+        #         'statusCode': 201,
+        #         'headers': headers,
+        #         'body': json.dumps(body)
+        #     }
             
-        # PUT /menu/{id} - Update item
-        elif method == 'PUT' and path.startswith('/menu/'):
-            item_id = path.split('/')[-1]
-            body = json.loads(event['body'])
-            body['id'] = item_id
-            table.put_item(Item=body)
-            return {
-                'statusCode': 200,
-                'headers': headers,
-                'body': json.dumps(body)
-            }
+        # elif method == 'PUT' and path.startswith('/menu/'):
+        #     item_id = path.split('/')[-1]
+        #     body = json.loads(event['body'])
+        #     body['id'] = item_id
+        #     table.put_item(Item=body)
+        #     return {
+        #         'statusCode': 200,
+        #         'headers': headers,
+        #         'body': json.dumps(body)
+        #     }
             
-        # DELETE /menu/{id} - Delete item
-        elif method == 'DELETE' and path.startswith('/menu/'):
-            item_id = path.split('/')[-1]
-            table.delete_item(Key={'id': item_id})
-            return {
-                'statusCode': 204,
-                'headers': headers,
-                'body': ''
-            }
+        # elif method == 'DELETE' and path.startswith('/menu/'):
+        #     item_id = path.split('/')[-1]
+        #     table.delete_item(Key={'id': item_id})
+        #     return {
+        #         'statusCode': 204,
+        #         'headers': headers,
+        #         'body': ''
+        #     }
             
-        # OPTIONS - Handle CORS preflight
-        elif method == 'OPTIONS':
-            return {
-                'statusCode': 200,
-                'headers': headers,
-                'body': ''
-            }
+        # elif method == 'OPTIONS':
+        #     return {
+        #         'statusCode': 200,
+        #         'headers': headers,
+        #         'body': ''
+        #     }
             
         else:
             return {

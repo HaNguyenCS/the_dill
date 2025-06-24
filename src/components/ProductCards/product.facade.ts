@@ -1,5 +1,6 @@
 import { Product } from '../../data/product';
 import { menuService } from '../../service/menuService.ts';
+import { firstValueFrom } from 'rxjs';
 
 export class ProductFacade {
 
@@ -12,9 +13,8 @@ export class ProductFacade {
       this.initialized = true;
     }
   }
-
   async refreshProducts() {
-    this.products = await menuService.getAllProducts();
+    this.products = await firstValueFrom(menuService.getAll());
   }
 
   getAllProducts(): Product[] {

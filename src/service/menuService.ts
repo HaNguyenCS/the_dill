@@ -1,59 +1,46 @@
-import { del, get, post, put } from 'aws-amplify/api';
 import { Product } from '../data/product';
+import { menuApi } from '../api/menuApi.ts';
+import { catchError, from, map, Observable, of, tap } from 'rxjs';
 
 export const menuService = {
-  async getAllProducts(): Promise<Product[]> {
-    try {
-      const restOp = get({
-        apiName: 'menuAPI',
-        path: '/menu',
-      });
-      console.log(restOp);
-    //   const  body  = await restOp.response;
-    //   const products = await body.json();
-    //   return products;
-      // Uncomment and adjust the following lines as needed to parse the response:
-      // const { body } = await restOp.response;
-      // const products = await body.json();
-      // return products;
-      return []; // Temporary return to satisfy the return type
-    } catch (error) {
-      console.error('Error fetching products:', error);
-      return [];
-    }
-  },
 
-//   async addProduct(product: Omit<Product, 'id'>): Promise<Product | null> {
-//     try {
-//       const response = await post('dillMenu', '/menu', {
-//         body: product
-//       });
-//       return response.data;
-//     } catch (error) {
-//       console.error('Error adding product:', error);
-//       return null;
-//     }
-//   },
+  getAll(): Observable<Product[]> {
+    return from(menuApi.getAll()).pipe(
+      map(products => products as Product[]),
+      tap(products => {
+        console.log('Fetched products:', products);
+      }),
+      catchError(error => {
+        console.error('Error fetching products:', error);
+        return of([]);
+      })
+    );
+  }
 
-//   async updateProduct(product: Product): Promise<Product | null> {
-//     try {
-//       const response = await put('dillMenu', `/menu/${product.id}`, {
-//         body: product
-//       });
-//       return response.data;
-//     } catch (error) {
-//       console.error('Error updating product:', error);
-//       return null;
-//     }
-//   },
+  // async addProduct(product: Omit<Product, 'id'>): Promise<Product | null> {
+  //   try {
+  //     return await menuApi.create(product);
+  //   } catch (error) {
+  //     console.error('Error adding product:', error);
+  //     return null;
+  //   }
+  // },
 
-//   async deleteProduct(id: string): Promise<boolean> {
-//     try {
-//       await del('dillMenu', `/menu/${id}`, {});
-//       return true;
-//     } catch (error) {
-//       console.error('Error deleting product:', error);
-//       return false;
-//     }
-//   }
+  // async updateProduct(product: Product): Promise<Product | null> {
+  //   try {
+  //     return await menuApi.update(product);
+  //   } catch (error) {
+  //     console.error('Error updating product:', error);
+  //     return null;
+  //   }
+  // },
+
+  // async deleteProduct(id: string): Promise<boolean> {
+  //   try {
+  //     return await menuApi.delete(id);
+  //   } catch (error) {
+  //     console.error('Error deleting product:', error);
+  //     return false;
+  //   }
+  // }
 };

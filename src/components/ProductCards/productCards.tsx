@@ -109,7 +109,6 @@ function ProductCard(product: Product) {
 }
 
 function ProductGrid( { products }: ProductGridProps) {
-    console.log(products);
     return (
         <Box sx={{
             display: 'grid',

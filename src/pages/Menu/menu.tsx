@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
 
 import { productFacade } from '../../components/ProductCards/product.facade.ts';
 import ProductGrid from '../../components/ProductCards/productCards.tsx';
-import { ProductCategory } from '../../data/product';
+import { ProductCategory } from '../../data/product.ts';
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
 import CircularProgress from '@mui/material/CircularProgress';
 
@@ -29,11 +29,11 @@ function Menu() {
 
     const tabs: { label: string; value: string; category?: ProductCategory }[] = [
         { label: 'All', value: 'all' },
-        { label: 'Banh Mi', value: 'banh-mi', category: 'banh-mi' },
-        { label: 'Drinks', value: 'drinks', category: 'drink' },
-        { label: 'Sides', value: 'sides', category: 'side' },
-        { label: 'Desserts', value: 'desserts', category: 'dessert' },
-        { label: 'Combo', value: 'combo', category: 'combo' },
+        { label: 'Banh Mi', value: 'banh-mi', category: ProductCategory.BANH_MI },
+        { label: 'Drinks', value: 'drinks', category: ProductCategory.DRINK },
+        { label: 'Sides', value: 'sides', category: ProductCategory.SIDE },
+        { label: 'Desserts', value: 'desserts', category: ProductCategory.DESSERT },
+        { label: 'Combo', value: 'combo', category: ProductCategory.COMBO },
     ];
 
     if (isLoading) {
