@@ -11,6 +11,11 @@ import CardActions from '@mui/material/CardActions';
 import Box from '@mui/material/Box';
 import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
 import AddToCartDialog from '../AddToCartDialog/addToCartDialog.tsx';
+import { useAuthenticator } from '@aws-amplify/ui-react';
+import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
 
 interface ProductGridProps {
     products: Product[];
@@ -21,6 +26,9 @@ function ProductCard(product: Product) {
     const getImageSource = (img: string | { default: string }) => {
         return typeof img === 'string' ? img : img.default;
     };
+
+    const { user } = useAuthenticator();
+    const isAuthenticated = Boolean(user);
 
     return (
         <>
@@ -68,7 +76,7 @@ function ProductCard(product: Product) {
                         </Typography>
                         <Typography variant="h6" sx={{ 
                             mt: 2, 
-                            color: '#E86A33',
+                            color: '#FFA500',
                             fontFamily: 'Georgia, serif',
                             fontWeight: 600
                         }}>
@@ -84,19 +92,71 @@ function ProductCard(product: Product) {
                     </CardContent>
                 </CardActionArea>
                 <CardActions sx={{ mt: 'auto', px: 2, pb: 2 }}>
-                    <Button size="small" color="primary"
-                        fullWidth
-                        onClick={() => setOpenDialog(true)}
-                        sx={{ 
-                            color: '#385D30',
-                            '&:hover': {
-                                backgroundColor: '#385D30',
-                                color: '#F5F0E1'
-                            },
-                            fontFamily: 'Georgia, serif',
-                        }}>
-                        Add to cart 
-                    </Button>
+                    {isAuthenticated ? (
+                        <Box sx={{ display:'flex', gap: 1 }}>
+                            <Button size="small" color="primary"
+                                aria-label="Edit"
+                                startIcon={<EditIcon />}
+                                onClick={() => console.log('Edit', product.id)}
+                                sx={{ 
+                                    color: '#385D30',
+                                    '&:hover': {
+                                        backgroundColor: '#385D30',
+                                        color: '#F5F0E1'
+                                    },
+                                    fontFamily: 'Georgia, serif',
+                                }}
+                            >
+                                Edit
+                            </Button>
+                            <Button size="small" color="secondary"
+                                aria-label="Delete"
+                                startIcon={<VisibilityRoundedIcon />}
+                                onClick={() => console.log('Delete', product.id)}
+                                sx={{ 
+                                    color: '#A3C586',
+                                    '&:hover': {
+                                        backgroundColor: '#A3C586',
+                                        color: '#F5F0E1'
+                                    },
+                                    fontFamily: 'Georgia, serif',
+                                }}
+                            >
+                                View
+                            </Button>
+                            <Button size="small" color="secondary"
+                                aria-label="Delete"
+                                startIcon={<DeleteIcon />}
+                                onClick={() => console.log('Delete', product.id)}
+                                sx={{ 
+                                    color: '#FFA500',
+                                    '&:hover': {
+                                        backgroundColor: '#FFA500',
+                                        color: '#F5F0E1'
+                                    },
+                                    fontFamily: 'Georgia, serif',
+                                }}
+                            >
+                                Delete
+                            </Button>
+                            
+                        </Box>
+                    ) : (
+                        <Button size="small" color="primary"
+                            fullWidth
+                            onClick={() => setOpenDialog(true)}
+                            sx={{ 
+                                color: '#385D30',
+                                '&:hover': {
+                                    backgroundColor: '#385D30',
+                                    color: '#F5F0E1'
+                                },
+                                fontFamily: 'Georgia, serif',
+                            }}>
+                            Add to cart 
+                            <AddRoundedIcon sx={{ ml: 1 }} />
+                        </Button>
+                    )}
                 </CardActions>
             </Card>
             <AddToCartDialog 

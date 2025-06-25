@@ -9,7 +9,8 @@ const navItems = [
   { label: 'Home', to: '/' },
   { label: 'Menu', to: '/menu' },
   { label: 'About', to: '/about' },
-  { label: 'Contact', to: '/contact' },
+//   { label: 'Contact', to: '/contact' },
+  { label: 'Admin', to: '/adminLogin' },
   { 
     label: <AddShoppingCartOutlinedIcon className={styles.cartIcon} />, 
     to: '/cart' 

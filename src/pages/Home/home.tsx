@@ -33,7 +33,7 @@ function Home() {
             alt="Dill Banh Mi Logo"
             className={styles.logo}
             />
-          <h1>Taste the Flavours Of Vietnam</h1>
+          {/* <h1>Taste the Flavours Of Vietnam</h1> */}
           <div className={styles.marqueeContainer}>
             <motion.div
               className={styles.marqueeContent}
