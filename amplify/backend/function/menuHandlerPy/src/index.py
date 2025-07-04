@@ -34,6 +34,20 @@ def handler(event, context):
                 'headers': headers,
                 'body': json.dumps(response['Items'], cls=DecimalEncoder)
             }
+        
+        elif method == 'GET' and path == '/':
+            response = table.scan(
+                FilterExpression='isPopular = :popular',
+                ExpressionAttributeValues={
+                    ':popular': True
+                }
+            )
+            print('response GET POPULAR', response)
+            return {
+                'statusCode': 200,
+                'headers': headers,
+                'body': json.dumps(response['Items'], cls=DecimalEncoder)
+            }
             
         # elif method == 'GET' and path.startswith('/menu/'):
         #     item_id = path.split('/')[-1]

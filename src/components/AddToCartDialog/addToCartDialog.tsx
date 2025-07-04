@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
-import { Product } from '../../data/product';
+import { Product, ProductCategory } from '../../data/product.ts';
 import { productFacade } from '../ProductCards/product.facade.ts';
 import { v4 as uuidv4 } from 'uuid';
 import { useCart } from '../../context/cartContext.tsx';
@@ -25,7 +25,7 @@ export default function AddToCartDialog({ open, onClose, product }: AddToCartDia
     const [notes, setNotes] = useState('');
     const { addToCart } = useCart();
 
-    const sideProducts = productFacade.getProductsByCategory('side');
+    const sideProducts = productFacade.getProductsByCategory(ProductCategory.SIDE);
 
     const calculateTotal = () => {
         const basePrice = product.price * quantity;

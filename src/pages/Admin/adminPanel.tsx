@@ -8,11 +8,13 @@ import ProductGrid from '../../components/ProductCards/productCards.tsx';
 import styles from './adminPanel.module.css';
 import { productFacade } from '../../components/ProductCards/product.facade.ts';
 import CircularProgress from '@mui/material/CircularProgress';
+import AddNewItemDialog from '../../components/AdminDialog/addNewItemDialog.tsx';
 
 export default function AdminPanel() {
   const { signOut } = useAuthenticator();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading]   = useState(true);
+  const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
 
   useEffect(() => {
     productFacade.initialize().then(() => {
@@ -21,8 +23,9 @@ export default function AdminPanel() {
     });
   }, []);
 
-  const handleAdd = () => {
-    // TODO
+  const handleAddProduct = (newProduct: Omit<Product, 'id'>) => {
+    // Handle adding the new product
+    console.log('New product:', newProduct);
   };
 
   const handleEdit = (product: Product) => {
@@ -47,7 +50,7 @@ export default function AdminPanel() {
             variant="contained"
             sx={{backgroundColor: '#A3C586', color: '#fff' }}
             startIcon={<AddIcon />}
-            onClick={handleAdd}
+            onClick={() => setIsAddDialogOpen(true)}
           >
             Add New Product
           </Button>
@@ -62,7 +65,11 @@ export default function AdminPanel() {
         </div>
       </div>
       <ProductGrid products={products}/>
-
+      <AddNewItemDialog 
+        open={isAddDialogOpen}
+        onClose={() => setIsAddDialogOpen(false)}
+        onSubmit={handleAddProduct}
+      />
     </div>
   );
 }
