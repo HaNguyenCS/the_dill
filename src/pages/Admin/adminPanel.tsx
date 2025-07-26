@@ -10,12 +10,14 @@ import { productFacade } from '../../components/ProductCards/product.facade.ts';
 import CircularProgress from '@mui/material/CircularProgress';
 import AddNewItemDialog from '../../components/AdminDialog/addNewItemDialog.tsx';
 import { menuService } from '../../service/menuService.ts';
+import { ToastAlert } from '../../components/Alerts/alerts.tsx';
 
 export default function AdminPanel() {
   const { signOut } = useAuthenticator();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading]   = useState(true);
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+  const [toast, setToast] = useState<{ open: boolean; message: string; severity: 'success' | 'error' }>({ open: false, message: '', severity: 'success' });
 
   useEffect(() => {
     productFacade.initialize().then(() => {
@@ -31,13 +33,24 @@ export default function AdminPanel() {
         if (created) {
           productFacade.refreshProducts().then(() => {
             setProducts(productFacade.getAllProducts());
+            setToast({ open: true, message: 'Product added successfully!', severity: 'success' });
           });
         }
       },
-      error: console.error,
+      error: (error) => {
+        console.error(error);
+        setToast({ open: true, message: 'Failed to add product.', severity: 'error' });
+      },
       complete: () => setLoading(false),
     });
     setIsAddDialogOpen(false);
+  };
+
+  const handleSignOut = () => {
+    setToast({ open: true, message: 'Signed out successfully!', severity: 'success' });
+    setTimeout(() => {
+      signOut();
+    }, 800);
   };
 
   const handleEdit = (product: Product) => {
@@ -70,7 +83,7 @@ export default function AdminPanel() {
             variant="outlined"
             sx={{ color: '#A3C586', borderColor: '#A3C586'}}
             startIcon={<LogoutIcon />}
-            onClick={signOut}
+            onClick={handleSignOut}
           >
             Sign Out
           </Button>
@@ -82,6 +95,14 @@ export default function AdminPanel() {
         onClose={() => setIsAddDialogOpen(false)}
         onSubmit={handleAddProduct}
       />
+      <ToastAlert
+        open={toast.open}
+        onClose={() => setToast({ ...toast, open: false })}
+        severity={toast.severity}
+        duration={4000}
+      >
+        {toast.message}
+      </ToastAlert>
     </div>
   );
 }

@@ -1,57 +1,107 @@
-.productCard {
-    background-color: #F5F0E1;
-    border-radius: 8px;
-    font-family: 'Georgia', serif;
-    padding: 1.5rem;
-    text-align: center;
-    transition: transform 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
 
-.productCard:hover {
-    transform: translateY(-5px);
-}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Playfair+Display:wght@700&display=swap');
 
-.productImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 4px;
-    margin-bottom: 1rem;
-}
-
-.productTitle {
-    color: #385D30;
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    font-family: 'Georgia', serif;
-}
-
-.productDescription {
-    color: #666;
-    font-size: 1rem;
-    line-height: 1.5;
-    font-family: 'Georgia', serif;
-
-}
-
-@media (max-width: 768px) {
-    .productImage {
-        height: 150px;
-    }
-    
-    .productTitle {
-        font-size: 1.2rem;
-    }
-}
-
-/* Add this if you're displaying multiple cards in a grid */
 .cardGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.card {
+  position: relative;
+  background-color: #FFF8E7;           /* very light beige */
+  border: 4px solid #D2C2A3;           /* muted border */
+  border-radius: 16px;                 /* round corners */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #E86A33;
+  color: white;
+  padding: 0.25rem 1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-bottom-left-radius: 8px;
+}
+
+.media {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.content {
+  flex: 1;
+  padding: 1rem;
+  text-align: center;
+}
+
+.card-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #385D30;
+  margin: 0 0 0.5rem;
+}
+
+.popularIcon {
+  vertical-align: middle;
+  margin-left: 0.25rem;
+  color: #A3C586;
+  font-size: 1rem;
+}
+
+.price {
+  font-family: 'Georgia', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #E86A33;
+  margin: 0.5rem 0;
+}
+
+.description {
+  font-family: 'Georgia', serif;
+  color: #666666;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  justify-content: space-between;
+}
+
+/* Add to cart button */
+.add-to-cart-button {
+  font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background-color: #385D30;
+  color: white;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  text-transform: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.add-to-cart-button:hover {
+  background-color: #2E7D32;
 }
