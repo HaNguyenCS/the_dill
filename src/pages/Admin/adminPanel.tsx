@@ -53,6 +53,8 @@ export default function AdminPanel() {
     return <CircularProgress color="success" />;
   }
 
+  const n = 1
+
   return (
     <div className={styles.panel}>
       <div className={styles.header}>
