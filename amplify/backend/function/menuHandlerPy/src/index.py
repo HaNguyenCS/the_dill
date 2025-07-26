@@ -28,27 +28,12 @@ def handler(event, context):
     try:
         if method == 'GET' and path == '/menu':
             response = table.scan()
-            print('response GET ALL', response)
             return {
                 'statusCode': 200,
                 'headers': headers,
                 'body': json.dumps(response['Items'], cls=DecimalEncoder)
             }
-        
-        elif method == 'GET' and path == '/':
-            response = table.scan(
-                FilterExpression='isPopular = :popular',
-                ExpressionAttributeValues={
-                    ':popular': True
-                }
-            )
-            print('response GET POPULAR', response)
-            return {
-                'statusCode': 200,
-                'headers': headers,
-                'body': json.dumps(response['Items'], cls=DecimalEncoder)
-            }
-            
+
         # elif method == 'GET' and path.startswith('/menu/'):
         #     item_id = path.split('/')[-1]
         #     response = table.get_item(Key={'id': item_id})
@@ -58,14 +43,16 @@ def handler(event, context):
         #         'body': json.dumps(response.get('Item', {}))
         #     }
             
-        # elif method == 'POST' and path == '/menu':
-        #     body = json.loads(event['body'])
-        #     table.put_item(Item=body)
-        #     return {
-        #         'statusCode': 201,
-        #         'headers': headers,
-        #         'body': json.dumps(body)
-        #     }
+        elif method == 'POST' and path == '/menu':
+            body = json.loads(event['body'])
+            if 'price' in body:
+                body['price'] = Decimal(str(body['price']))
+            table.put_item(Item=body)
+            return {
+                'statusCode': 201,
+                'headers': headers,
+                'body': json.dumps(body, cls=DecimalEncoder)
+            }
             
         # elif method == 'PUT' and path.startswith('/menu/'):
         #     item_id = path.split('/')[-1]

@@ -33,6 +33,8 @@ const awsmobile = {
             "region": "us-east-2"
         }
     ],
+    "aws_user_files_s3_bucket": "thedillimage19b02-dev",
+    "aws_user_files_s3_bucket_region": "us-east-2",
     "aws_cloud_logic_custom": [
         {
             "name": "menuAPI",

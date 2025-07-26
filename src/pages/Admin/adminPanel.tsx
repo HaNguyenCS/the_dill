@@ -9,6 +9,7 @@ import styles from './adminPanel.module.css';
 import { productFacade } from '../../components/ProductCards/product.facade.ts';
 import CircularProgress from '@mui/material/CircularProgress';
 import AddNewItemDialog from '../../components/AdminDialog/addNewItemDialog.tsx';
+import { menuService } from '../../service/menuService.ts';
 
 export default function AdminPanel() {
   const { signOut } = useAuthenticator();
@@ -23,9 +24,20 @@ export default function AdminPanel() {
     });
   }, []);
 
-  const handleAddProduct = (newProduct: Omit<Product, 'id'>) => {
-    // Handle adding the new product
-    console.log('New product:', newProduct);
+  const handleAddProduct = (product: Omit<Product,'id'>) => {
+    setLoading(true);
+    menuService.addProduct(product).subscribe({
+      next: created => {
+        if (created) {
+          productFacade.refreshProducts().then(() => {
+            setProducts(productFacade.getAllProducts());
+          });
+        }
+      },
+      error: console.error,
+      complete: () => setLoading(false),
+    });
+    setIsAddDialogOpen(false);
   };
 
   const handleEdit = (product: Product) => {

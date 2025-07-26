@@ -34,6 +34,10 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "storage": {
+    "menuItemImage": {
+      "BucketName": "string",
+      "Region": "string"
+    },
     "menuTable": {
       "Arn": "string",
       "Name": "string",

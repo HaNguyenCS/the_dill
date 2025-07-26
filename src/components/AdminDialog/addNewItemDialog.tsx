@@ -140,7 +140,6 @@ export default function AddNewItemDialog({ open, onClose, onSubmit }: AddNewItem
           <Button 
             type="submit"
             variant="contained"
-            onClick={handleSubmit}
             sx={{ 
               backgroundColor: '#2E7D32',
               '&:hover': { backgroundColor: '#1B5E20' }

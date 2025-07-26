@@ -1,19 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './home.module.css';
 import { motion } from 'framer-motion';
 // import { useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import ProductGrid from '../../components/ProductCards/productCards.tsx';
 import { productFacade } from '../../components/ProductCards/product.facade.ts';
-import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const banhmiImage = require('../../asset/Banh-Mi-Thit-Nuong.jpg');
 
 function Home() {
-  // const buttonRef = React.useRef<HTMLButtonElement>(null);
-  // const isInView = useInView(buttonRef, { once: false });
+
+  const [isLoading, setIsLoading] = useState(true);
   const marqueeText = 'Address: 32 Coleville Rd, North York, Ontario  |  Contact: 416-476-7244  |  Experience the authentic taste of Vietnam with our delicious banh mi and refreshing drinks.  ';
   
+  useEffect(() => {
+      async function init() {
+          await productFacade.initialize();
+          setIsLoading(false);
+      }
+      init();
+  }, []);
+
+  if (isLoading) {
+      return <CircularProgress color="success" />;
+  }
+
   return (
       <div className={styles.home}>
         <section className={styles.welcome}>

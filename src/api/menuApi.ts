@@ -23,19 +23,26 @@ export const menuApi = {
     }
   },
 
-  async create(product: Omit<Product, 'id'>) {
-    const newProduct = {
-      ...product,
-      id: uuidv4(),
-    }
+  async create(product: Omit<Product, 'id'>): Promise<Product> {
+    try {
+      const newProduct = {
+        ...product,
+        id: uuidv4(),
+      }
 
-    const restOp = await post({
-      apiName: 'menuAPI',
-      path: '/adminLogin',
-      options: { body: newProduct }
-    });
-    const apiResponse = await restOp.response;
-    return apiResponse.body.json();
+      const restOp = await post({
+        apiName: 'menuAPI',
+        path: '/menu',
+        options: { body: newProduct }
+      });
+      const apiResponse = await restOp.response;
+      const createdProduct = (await apiResponse.body.json()) as unknown as Product;
+
+      return createdProduct;
+    } catch (err) {
+      console.error('Error creating product:', err);
+      throw err;
+    }
   },
 
 //   async update(product: Product) {

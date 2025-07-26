@@ -25,11 +25,12 @@
         },
         "menuHandlerPy": {
           "deploymentBucketName": "amplify-thedill-dev-19b02-deployment",
-          "s3Key": "amplify-builds/menuHandlerPy-654b4a6e74336d4d6773-build.zip"
+          "s3Key": "amplify-builds/menuHandlerPy-7253474c734641434d79-build.zip"
         }
       },
       "storage": {
-        "menuTable": {}
+        "menuTable": {},
+        "menuItemImage": {}
       },
       "api": {
         "menuAPI": {}

@@ -1,6 +1,8 @@
 import { Product } from '../data/product';
 import { menuApi } from '../api/menuApi.ts';
 import { catchError, from, map, Observable, of, tap } from 'rxjs';
+import { v4 as uuidv4 } from 'uuid';
+import { post } from '@aws-amplify/api';
 
 export const menuService = {
 
@@ -15,16 +17,17 @@ export const menuService = {
         return of([]);
       })
     );
-  }
+  },
 
-  // async addProduct(product: Omit<Product, 'id'>): Promise<Product | null> {
-  //   try {
-  //     return await menuApi.create(product);
-  //   } catch (error) {
-  //     console.error('Error adding product:', error);
-  //     return null;
-  //   }
-  // },
+  addProduct(item: Omit<Product, 'id'>): Observable<Product | null> {
+    return from(menuApi.create(item)).pipe(
+      tap(p => console.log('Created product:', p)),
+      catchError(err => {
+        console.error(err);
+        return of(null);
+      })
+    );
+  },
 
   // async updateProduct(product: Product): Promise<Product | null> {
   //   try {
