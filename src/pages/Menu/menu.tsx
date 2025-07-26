@@ -63,7 +63,7 @@ function Menu() {
                         sx={{
                             '& .MuiTab-root': {
                                 color: '#385D30',
-                                fontFamily: 'Georgia, serif',
+                                fontFamily: 'Montserrat, Helvetica Neue, Arial, sans-serif',
                                 fontSize: {
                                     xs: '0.8rem',
                                     sm: '1rem'
@@ -83,14 +83,6 @@ function Menu() {
                 </Box>
                 {tabs.map(tab => (
                     <TabPanel key={tab.value} value={tab.value} sx={{ padding: 3 }}>
-                        <div style={{color: '#666666', fontFamily: 'Georgia, serif', fontSize: '1rem', marginBottom: '1rem'}}>
-                            <FavoriteBorderRoundedIcon 
-                            sx={{ 
-                                fontSize: '1rem',
-                                color: '#A3C586' 
-                            }}
-                        /> = Best sellers
-                        </div>
                         <ProductGrid 
                             products={
                                 tab.value === 'all' 

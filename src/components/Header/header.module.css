@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Playfair+Display:wght@700&display=swap');
+
 .header {
   position: sticky;
   top: 0;
@@ -12,6 +14,7 @@
 }
 
 .title {
+  font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
   font-size: 1.8rem;
   font-weight: bold;
   color: #F5F0E1; /* Warm Sand Beige text */
@@ -39,11 +42,12 @@
 }
 
 .link {
+  font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
   display: flex;
   align-items: center;
-  height: 100%; /* Make links full height */
+  height: 100%;
   text-decoration: none;
-  color: #F5F0E1; /* Dark Forest */
+  color: #F5F0E1;
   font-weight: 400;
   font-size: 1.2rem;
   position: relative;
