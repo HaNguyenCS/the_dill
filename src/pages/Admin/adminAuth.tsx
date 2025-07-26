@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Authenticator,
   ThemeProvider,
@@ -10,15 +10,34 @@ import {
 import '@aws-amplify/ui-react/styles.css';
 import styles from './adminAuth.module.css';
 import AdminPanel from './adminPanel.tsx';
+import { ToastAlert } from '../../components/Alerts/alerts.tsx';
 
 export default function AdminAuth({ onSuccess }: { onSuccess: () => void }) {
   const { tokens } = useTheme();
 
   const { route } = useAuthenticator(context => [context.route]);
   // const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [toast, setToast] = useState<{ open: boolean; message: string; severity: 'success' | 'error' }>({ open: false, message: '', severity: 'success' });
+
+  useEffect(() => {
+    if (route === 'authenticated') {
+      setToast({ open: true, message: 'Signed in successfully!', severity: 'success' });
+    }
+  }, [route]);
 
   if (route === 'authenticated') {
-    return <AdminPanel />;
+    return (
+      <>
+        <AdminPanel />
+        <ToastAlert
+          open={toast.open}
+          severity={toast.severity}
+          onClose={() => setToast(prev => ({ ...prev, open: false }))}
+        >
+          {toast.message}
+        </ToastAlert>
+      </>
+    );
   }
 
   const theme: Theme = {
@@ -130,7 +149,6 @@ export default function AdminAuth({ onSuccess }: { onSuccess: () => void }) {
             Header() {
               return (
                 <div className={styles.header}>
-                  {/* <h1 className={styles.title}>Admin Login</h1> */}
                   <p className={styles.description}>
                     This page is for Admin only! Please log in to access the admin panel.
                   </p>
