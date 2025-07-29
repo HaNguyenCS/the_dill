@@ -65,7 +65,7 @@ function Home() {
         </section>
         <div className={styles.featuredProducts}>
         <h2>BEST SELLERS</h2>
-        <ProductGrid products={productFacade.getAllProducts()} />
+        <ProductGrid products={productFacade.getPopularProducts()} />
       </div>
     </div>
   );
