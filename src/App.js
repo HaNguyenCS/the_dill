@@ -6,6 +6,7 @@ import Menu from './pages/Menu/menu.tsx';
 import { CartProvider } from './context/cartContext.tsx';
 import { Authenticator } from '@aws-amplify/ui-react';
 import AdminPage from './pages/Admin/adminAuth.tsx';
+import About from './pages/About/about.tsx';
 
 const App = () => {
   return (
@@ -18,7 +19,7 @@ const App = () => {
               <Routes>
                 <Route path="/" element={<Home/>} />
                 <Route path="/menu" element={<Menu/>} />
-                <Route path="/about" element={<div>About Page Coming Soon</div>} />
+                <Route path="/about" element={<About />} />
                 {/* <Route path="/contact" element={<div>Contact Page Coming Soon</div>} /> */}
                 <Route path="/cart" element={<div>404 - Page Not Found</div>} />
                 <Route 
