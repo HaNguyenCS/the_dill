@@ -9,7 +9,7 @@ export default function About() {
     <div style={{ padding: '2rem', backgroundColor: '#FFF8E7' }}>
       <h1 style={{
         textAlign: 'center',
-        fontFamily: 'Playfair Display, serif',
+        fontFamily: 'Montserrat, Helvetica Neue, Arial, sans-serif',
         color: '#385D30'
       }}>
         About Us
@@ -20,7 +20,7 @@ export default function About() {
       <p style={{
         maxWidth: 800,
         margin: '1rem auto',
-        fontFamily: 'Montserrat, sans-serif',
+        fontFamily: 'Montserrat, Helvetica Neue, Arial, sans-serif',
         color: '#555'
       }}>
         We’re proud to serve authentic Bánh Mì in the heart of the city.  
