@@ -15,6 +15,8 @@ import {
   Switch
 } from '@mui/material';
 import { Product, ProductCategory } from '../../data/product.ts';
+import { FileUploader } from '@aws-amplify/ui-react-storage';
+import { v4 as uuidv4 } from 'uuid';
 
 interface AddNewItemDialogProps {
   open: boolean;
@@ -29,8 +31,17 @@ export default function AddNewItemDialog({ open, onClose, onSubmit }: AddNewItem
     price: '',
     category: ProductCategory.BANH_MI,
     image: '',
-    isPopular: false
+    isPopular: false,
   });
+
+  // const result = await uploadData({
+  //   path: 'album/2024/1.jpg',
+  //   data: newItem.file,
+  //   options: {
+  //     // Specify a target bucket using name assigned in Amplify Backend
+  //     bucket: 'assignedNameInAmplifyBackend'
+  //   }
+  // }).result;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -98,13 +109,6 @@ export default function AddNewItemDialog({ open, onClose, onSubmit }: AddNewItem
                 ))}
               </Select>
             </FormControl>
-            <TextField
-              label="Image URL"
-              value={newItem.image}
-              onChange={(e) => setNewItem({ ...newItem, image: e.target.value })}
-              required
-              fullWidth
-            />
             <FormControlLabel 
               control={
                 <Switch 
@@ -124,6 +128,21 @@ export default function AddNewItemDialog({ open, onClose, onSubmit }: AddNewItem
                 />
               } 
               label="Popular Item"
+            />
+            <FileUploader
+              acceptedFileTypes={['image/*']}
+              path={`public/${uuidv4()}-${newItem.title}`}
+              maxFileCount={1}
+              isResumable
+              onUploadSuccess={file => {
+                setNewItem({
+                  ...newItem,
+                  image: file.key as string,
+                })
+              }}
+              onUploadError={err => {
+                console.error('Upload failed', err)
+              }}
             />
           </Box>
         </DialogContent>
