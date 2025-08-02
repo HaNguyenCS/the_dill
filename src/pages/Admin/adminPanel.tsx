@@ -56,6 +56,7 @@ export default function AdminPanel() {
   const handleEdit = (product: Product) => {
     // TODO
   };
+  console.log('handleEdit not implemented yet');
 
   const handleDelete = (product: Product) => {
     // await menuService.deleteProduct(product.id);
