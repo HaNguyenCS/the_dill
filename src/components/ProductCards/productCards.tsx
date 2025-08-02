@@ -1,10 +1,11 @@
-import React, { useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import styles from './productCards.module.css';
 import { Product } from '../../data/product';
 import Box from '@mui/material/Box';
 import AddToCartDialog from '../AddToCartDialog/addToCartDialog.tsx';
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
+import { getUrl } from '@aws-amplify/storage';
 
 interface ProductGridProps {
     products: Product[];
@@ -12,9 +13,26 @@ interface ProductGridProps {
 
 function ProductCard(product: Product) {
     const [openDialog, setOpenDialog] = useState(false);
-    const getImageSource = (img: string | { default: string }) => {
-        return typeof img === 'string' ? img : img.default;
-    };
+    const [imageUrl, setImageUrl] = useState<string>('');
+
+    useEffect(() => {
+        async function loadImage() {
+            if (product.image) {
+                try {
+                    const { url } = await getUrl({
+                        path: product.image as string,
+                        options: {
+                            validateObjectExistence: true,
+                        }
+                    });
+                    setImageUrl(url.toString());
+                } catch (error) {
+                    console.error('Error loading image:', error);
+                }
+            }
+        }
+        loadImage();
+    }, [product.image]);
 
     const { user } = useAuthenticator();
     const isAuthenticated = Boolean(user);
@@ -26,7 +44,7 @@ function ProductCard(product: Product) {
                 <div className={styles.badge}>Best Seller</div>
                 )}
 
-                <img src={getImageSource(product.image)} alt={product.title} className={styles.media} />
+                <img src={imageUrl} alt={product.title} className={styles.media} loading="lazy" />
 
                 <div className={styles.content}>
                 <h2 className={styles['card-title']}>{product.title}</h2>
